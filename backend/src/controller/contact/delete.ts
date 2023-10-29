@@ -3,7 +3,7 @@ import { ContactService } from "../../service";
 import { BaseController } from "../../utils/baseClass/baseController";
 import { logger } from "../../utils/logger";
 
-export default class DeleteContactController extends BaseController {
+class DeleteContactController extends BaseController {
     protected async executeImpl(pathParam?: any, queryParam?: any, body?: any): Promise<any> {
         logger.verbose("start /controller/contact/delete");
         const guid = pathParam.guid;
@@ -14,3 +14,5 @@ export default class DeleteContactController extends BaseController {
         logger.verbose("end /controller/contact/delete");
     }
 }
+
+export const deleteContactController = new DeleteContactController();

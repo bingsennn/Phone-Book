@@ -1,18 +1,13 @@
 import { Router } from 'express';
 import { 
-    CreateContactController, 
-    DeleteContactController, 
-    EditContactController, 
-    ListContactController, 
-    RetrieveContactController 
+    createContactController, 
+    deleteContactController, 
+    editContactController, 
+    listContactController, 
+    retrieveContactController 
 } from '../controller';
 
 const contactRouter = Router();
-const createContactController = new CreateContactController();
-const editContactController = new EditContactController();
-const retrieveContactController = new RetrieveContactController();
-const listContactController = new ListContactController();
-const deleteContactController = new DeleteContactController();
 
 contactRouter.post("/create", (req, res) => createContactController.executeRest(req, res))
 contactRouter.post("/edit/:guid", (req, res) => editContactController.executeRest(req, res))

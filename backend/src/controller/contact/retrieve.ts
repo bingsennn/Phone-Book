@@ -2,7 +2,7 @@ import { ContactService } from "../../service";
 import { BaseController } from "../../utils/baseClass/baseController";
 import { logger } from "../../utils/logger";
 
-export default class RetrieveContactController extends BaseController {
+class RetrieveContactController extends BaseController {
     protected async executeImpl(pathParam?: any, queryParam?: any, body?: any): Promise<any> {
         logger.verbose("start /controller/contact/retrieve");
         const guid = pathParam.guid;
@@ -13,3 +13,5 @@ export default class RetrieveContactController extends BaseController {
         logger.verbose("end /controller/contact/retrieve");
     }
 }
+
+export const retrieveContactController = new RetrieveContactController();

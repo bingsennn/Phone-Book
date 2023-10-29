@@ -1,13 +1,13 @@
-import CreateContactController from './contact/create';
-import EditContactController from './contact/edit';
-import RetrieveContactController from './contact/retrieve';
-import DeleteContactController from './contact/delete';
-import ListContactController from './contact/list';
+import { createContactController } from './contact/create';
+import { editContactController } from './contact/edit';
+import { retrieveContactController } from './contact/retrieve';
+import { deleteContactController } from './contact/delete';
+import { listContactController } from './contact/list';
 
 export {
-    CreateContactController,
-    EditContactController,
-    RetrieveContactController,
-    DeleteContactController,
-    ListContactController
+    createContactController,
+    editContactController,
+    retrieveContactController,
+    deleteContactController,
+    listContactController
 }
