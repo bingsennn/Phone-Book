@@ -5,10 +5,10 @@ import { logger } from "../../utils/logger";
 class ListContactController extends BaseController {
     protected async executeImpl(pathParam?: any, queryParam?: any, body?: any): Promise<any> {
         logger.verbose("start /controller/contact/list");
-        const { name, phoneNumber, address } = queryParam;
+        const { searchStr } = queryParam;
 
         const contactService = new ContactService(this.queryRunner);
-        this.serviceResponse = await contactService.listContact(name, phoneNumber, address);
+        this.serviceResponse = await contactService.listContact(searchStr);
 
         logger.verbose("end /controller/contact/list");
     }

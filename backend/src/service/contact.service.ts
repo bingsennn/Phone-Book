@@ -91,32 +91,19 @@ export default class ContactService extends BaseService {
         return serviceResponse;
     }
 
-    async listContact(name: string, phoneNumber: string, address: string): Promise<ServiceResponse> {
+    async listContact(searchStr: string): Promise<ServiceResponse> {
         logger.verbose("start /service/contact listContact");
         const serviceResponse = new ServiceResponse();
-
-        const filters: FindConditions<Contact> = {
-            deletedStatus: DeletedStatus.ACTIVE
-        };
-        if (name) {
-            filters.name = Like(`%${name}%`);
-        }
-        if (phoneNumber) {
-            filters.phoneNumber = Like(`%${phoneNumber}%`);
-        }
-        if (address) {
-            filters.address = Like(`%${address}%`);
-        }
         
         try {
-            const [ contacts, totalCount ] = await this.queryRunner.manager.getRepository(Contact).findAndCount({
-                where: {
-                    ...filters,
-                },
-                order: {
-                    name: "ASC"
-                }
-            });
+            const [ contacts, totalCount ] = await this.queryRunner.manager
+                .getRepository(Contact)
+                .createQueryBuilder("contact")
+                .where('contact.deletedStatus = :value1', { value1: DeletedStatus.ACTIVE })
+                .andWhere('contact.name LIKE :value2 OR contact.phoneNumber LIKE :value2 OR contact.address LIKE :value2', { value2: `%${searchStr}%`})
+                .orderBy('contact.name', 'ASC')
+                .getManyAndCount();
+
             serviceResponse.isSuccess = true;
             serviceResponse.data = contacts;
             serviceResponse.totalCount = totalCount;
