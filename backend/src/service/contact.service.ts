@@ -96,13 +96,20 @@ export default class ContactService extends BaseService {
         const serviceResponse = new ServiceResponse();
         
         try {
-            const [ contacts, totalCount ] = await this.queryRunner.manager
-                .getRepository(Contact)
-                .createQueryBuilder("contact")
-                .where('contact.deletedStatus = :value1', { value1: DeletedStatus.ACTIVE })
-                .andWhere('contact.name LIKE :value2 OR contact.phoneNumber LIKE :value2 OR contact.address LIKE :value2', { value2: `%${searchStr}%`})
-                .orderBy('contact.name', 'ASC')
-                .getManyAndCount();
+            const [ contacts, totalCount ] = searchStr ? 
+                await this.queryRunner.manager
+                    .getRepository(Contact)
+                    .createQueryBuilder("contact")
+                    .where('contact.deletedStatus = :value1', { value1: DeletedStatus.ACTIVE })
+                    .andWhere('contact.name LIKE :value2 OR contact.phoneNumber LIKE :value2 OR contact.address LIKE :value2', { value2: `%${searchStr}%`})
+                    .orderBy('contact.name', 'ASC')
+                    .getManyAndCount() :
+                await this.queryRunner.manager
+                    .getRepository(Contact)
+                    .createQueryBuilder("contact")
+                    .where('contact.deletedStatus = :value1', { value1: DeletedStatus.ACTIVE })
+                    .orderBy('contact.name', 'ASC')
+                    .getManyAndCount()
 
             serviceResponse.isSuccess = true;
             serviceResponse.data = contacts;
