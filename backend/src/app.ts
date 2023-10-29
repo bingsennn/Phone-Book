@@ -1,7 +1,9 @@
 import express from 'express';
+import dotenv from 'dotenv';
 import { startConnection } from './utils';
 import { entities } from './data';
 
+dotenv.config();
 const port = 3000;
 (async () => {
     await startConnection(entities);

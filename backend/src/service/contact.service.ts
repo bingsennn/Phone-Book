@@ -1,4 +1,4 @@
-import { Equal, FindConditions, Like } from "typeorm";
+import { FindConditions, Like } from "typeorm";
 import Contact from "../data/contact";
 import { BaseService } from "../utils/baseClass/baseService";
 import { ServiceResponse } from "../utils/baseClass/serviceResponse";
@@ -110,7 +110,9 @@ export default class ContactService extends BaseService {
         
         try {
             const [ contacts, totalCount ] = await this.queryRunner.manager.getRepository(Contact).findAndCount({
-                ...filters,
+                where: {
+                    ...filters,
+                },
                 order: {
                     name: "ASC"
                 }
