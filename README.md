@@ -12,14 +12,15 @@ Follow the steps below to set up and run both the Express backend and the React 
 
 ### Steps
 
-1. Clone the repo
-2. Start express server using
+1. Download Zip file from [repo](https://github.com/bingsennn/Phone-Book/tree/release/20231029)
+2. Copy .env file provided and paste into Express project
+3. Start Express server using
 ```bash
 npm i
 npm run build
 npm run start
 ```
-3. Start React app using
+4. Start React app using
 ```bash
 npm i
 npm run build
