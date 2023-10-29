@@ -2,9 +2,21 @@
 
 This repository is a web application named Phone Book.
 
+## Rest API
+1. /contact/create
+2. /contact/retrieve
+3. /contact/list
+4. /contact/edit
+5. /contact/delete
+
+## User Interface
+Due to time constraint, create, edit and delete contact functionalities are not supported on user interface although it can achieved via API call. 
+
+Only search function is supported on user interface.
+
 ## Getting Started
 
-Follow the steps below to set up and run both the Express backend and the React frontend of your application.
+Follow the steps below to set up and run the application.
 
 ### Prerequisites
 
@@ -12,15 +24,14 @@ Follow the steps below to set up and run both the Express backend and the React 
 
 ### Steps
 
-1. Download Zip file from [repo](https://github.com/bingsennn/Phone-Book/tree/release/20231029)
-2. Copy .env file provided and paste into Express project
-3. Start Express server using
+1. Create a file in backend sub-directory named .env and paste environment variables from attached env.txt
+2. Start Express server using
 ```bash
 npm i
 npm run build
 npm run start
 ```
-4. Start React app using
+3. Start React app using
 ```bash
 npm i
 npm run build
